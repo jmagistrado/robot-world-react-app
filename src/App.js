@@ -1,25 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+import React, { useState } from "react";
+import GoodRobot from "./components/GoodRobot";
+import BadRobot from "./components/BadRobot";
+import WarriorRobot from "./components/WarriorRobot";
+
+
+const App = () => {
+
+  const [userInput, setUserInput] = useState ("")
+  const [badInput, setBadInput] = useState("")
+ 
+
+  const handleChange  = (e) => {
+    setUserInput(e.target.value);
+    setBadInput(["bla", ...badInput])
+    
+  }
+
+  const refreshPage = () => {
+
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <div className="text-background">
+    <h1 className="title">Robot World 🤖🌎</h1>
+    <div className='wrapper'>
+      <div className="robot-reponse"><p>Tell Us Something:</p>
+      <input type="text" value={userInput} onChange={handleChange} /> 
+    </div>   
+    <GoodRobot userInput={userInput}/>
+    <BadRobot badInput={badInput}/>
+    <WarriorRobot userInput={userInput}/>
     </div>
-  );
+    </div>
+    </>
+  )
 }
+
+
+
 
 export default App;
